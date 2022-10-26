@@ -1,0 +1,6 @@
+#!/bin/bash
+# Usage: docker-bash
+# Mounts current directory into a docker/php8 image
+SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+docker build --rm -t docker-bash $SCRIPT_DIR/docker
+docker run -v "$(pwd):/app" -p 8960:80 --rm -it docker-bash bash
